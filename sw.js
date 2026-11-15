@@ -1,4 +1,4 @@
-const CACHE = 'loot-hunters-v4';
+const CACHE = 'loot-hunters-v5';
 self.addEventListener('install', e => {
   self.skipWaiting();
 });

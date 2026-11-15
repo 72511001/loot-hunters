@@ -9,7 +9,7 @@
     <link rel="manifest" href="./app.webmanifest" />
     <meta name="theme-color" content="#0c0b0a" />
     <title>Loot Hunters (던전 헌터)</title>
-    <link rel="stylesheet" href="./assets/main-DN5bDZvF.css?v=4" />
+    <link rel="stylesheet" href="./assets/main-DN5bDZvF.css?v=5" />
     <style>
       /* 1. Force remove phone simulator mockup on all devices */
       #phone-frame, #phone-frame:before, #phone-frame:after {
@@ -81,16 +81,42 @@
         padding: 0 !important;
       }
 
-      /* 6. Hunt CTA Button */
+      
+      /* 6. Contain all modal dialogs, sheets, and panels strictly inside the 9:16 column */
+      .gveil {
+        left: var(--appx) !important;
+        width: var(--appw) !important;
+        right: auto !important;
+        box-sizing: border-box !important;
+      }
+      .gsheet, .item-card.gearcard {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .screen, .screen.gear, .screen.forge, .screen.shop, .screen.char, .screen.camp {
+        max-width: var(--appw) !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .bottom-nav {
+        max-width: var(--appw) !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .bottom-nav .nav-it {
+        white-space: nowrap !important;
+      }
+
+      /* 7. Hunt CTA Button */
       .big-btn.hunt {
         gap: 14px !important;
         font-family: inherit !important;
       }
     </style>
-    <script type="module" crossorigin src="./assets/index-DC3UKVmW.js?v=4"></script>
+    <script type="module" crossorigin src="./assets/index-DC3UKVmW.js?v=5"></script>
     <script>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./sw.js?v=4').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=5').then(reg => {
           reg.update();
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;
