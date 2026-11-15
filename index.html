@@ -9,27 +9,44 @@
     <link rel="manifest" href="./app.webmanifest" />
     <meta name="theme-color" content="#0c0b0a" />
     <title>Loot Hunters (던전 헌터)</title>
-    <link rel="stylesheet" href="./assets/main-DN5bDZvF.css?v=5" />
+    <link rel="stylesheet" href="./assets/main-DN5bDZvF.css?v=6" />
     <style>
-      /* 1. Force remove phone simulator mockup on all devices */
+      /* 1. Remove phone simulator mockup frame on all screens */
       #phone-frame, #phone-frame:before, #phone-frame:after {
         display: none !important;
       }
 
-      /* 2. Standard 9:16 portrait layout across all screens (PC & Mobile) */
-      :root {
-        --ratio: 0.5625 !important;
-        --apph: 100dvh !important;
-        --appw: min(100vw, 540px, calc(100dvh * 0.5625)) !important;
-        --appx: calc(50vw - var(--appw) / 2) !important;
-        --appy: 0px !important;
-        --safe-top: 12px !important;
+      /* 2. Responsive Portrait Layout */
+      /* On mobile/LDPlayer (<541px): use full 100vw native width like original app */
+      @media (max-width: 540px) {
+        :root {
+          --ratio: 0.5625 !important;
+          --apph: 100dvh !important;
+          --appw: 100vw !important;
+          --appx: 0px !important;
+          --appy: 0px !important;
+          --safe-top: 8px !important;
+        }
+      }
+      /* On PC / wide screens (>=541px): centered 540px column with black backdrop */
+      @media (min-width: 541px) {
+        :root {
+          --ratio: 0.5625 !important;
+          --apph: 100dvh !important;
+          --appw: min(540px, calc(100dvh * 0.5625)) !important;
+          --appx: calc(50vw - var(--appw) / 2) !important;
+          --appy: 0px !important;
+          --safe-top: 12px !important;
+        }
       }
 
-      /* 3. Center game canvas and UI overlay without margins or borders */
       body {
         background: #060505 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
       }
+
       #ui-root, #game-root {
         top: 0 !important;
         left: var(--appx) !important;
@@ -38,6 +55,7 @@
         border-radius: 0 !important;
         overflow: hidden !important;
       }
+
       .overlay, .clearbanner, .floorstrip, .dwalk {
         top: 0 !important;
         left: var(--appx) !important;
@@ -46,7 +64,56 @@
         border-radius: 0 !important;
       }
 
-      /* 4. Camp screen rails: vertical columns at left and right edges */
+      /* 3. Header layout: Gold & Gem side-by-side on 1 single row (match Image 0) */
+      .screen.gear .head, .head {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-wrap: nowrap !important;
+        padding: 6px 12px !important;
+      }
+      .screen.gear .head > b, .head > b {
+        flex: none !important;
+        font-size: var(--fs-title) !important;
+        letter-spacing: 1px !important;
+      }
+      .screen.gear .head .purses, .purses {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        gap: 6px !important;
+        margin-left: auto !important;
+        flex: none !important;
+      }
+      .screen.gear .head .purses .pill, .purses .pill {
+        flex: none !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 4px !important;
+        height: 1.8rem !important;
+        padding: 0 8px !important;
+        white-space: nowrap !important;
+      }
+
+      /* 4. Equipment Stage & Slot Ratio: prevent vertical stretching */
+      .gstage {
+        flex: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .ggrid, .stash-grid {
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .stash-grid .gslot, .gstage .gslot, .gtile, .gsock {
+        pointer-events: auto !important;
+        cursor: pointer !important;
+      }
+
+      /* 5. Camp screen rails: vertical columns at left and right edges */
       .camp-rail {
         display: flex !important;
         flex-direction: column !important;
@@ -65,58 +132,82 @@
         left: auto !important;
       }
 
-      /* 5. Bottom navigation: strictly ONE line, no 2-row wrapping */
+      /* 6. Bottom Navigation Bar: clean 1-row layout with icons on top and labels below */
       .bottom-nav {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
-        align-items: flex-end !important;
+        align-items: stretch !important;
         justify-content: space-around !important;
-        gap: 2px !important;
-        padding: 8px 4px calc(8px + env(safe-area-inset-bottom)) !important;
+        gap: 0 !important;
+        padding: 4px 2px calc(4px + env(safe-area-inset-bottom)) !important;
+        max-width: var(--appw) !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
       }
       .bottom-nav .nav-it {
         flex: 1 1 0 !important;
         min-width: 0 !important;
-        padding: 0 !important;
-      }
-
-      
-      /* 6. Contain all modal dialogs, sheets, and panels strictly inside the 9:16 column */
-      .gveil {
-        left: var(--appx) !important;
-        width: var(--appw) !important;
-        right: auto !important;
-        box-sizing: border-box !important;
-      }
-      .gsheet, .item-card.gearcard {
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-      }
-      .screen, .screen.gear, .screen.forge, .screen.shop, .screen.char, .screen.camp {
-        max-width: var(--appw) !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-      }
-      .bottom-nav {
-        max-width: var(--appw) !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-      }
-      .bottom-nav .nav-it {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 2px !important;
+        padding: 2px 0 !important;
+        position: relative !important;
         white-space: nowrap !important;
       }
+      .bottom-nav .nav-it .badge {
+        position: absolute !important;
+        top: 2px !important;
+        right: 18% !important;
+      }
 
-      /* 7. Hunt CTA Button */
+      /* 7. ITEM DETAILS MODAL POPUP (.gveil + .gsheet) - MATCH IMAGE 2 EXACTLY */
+      .gveil {
+        position: fixed !important;
+        inset: 0 !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: 100dvh !important;
+        display: grid !important;
+        place-items: center !important;
+        background: rgba(0, 0, 0, 0.75) !important;
+        backdrop-filter: grayscale(0.7) !important;
+        z-index: 99999 !important;
+        pointer-events: auto !important;
+        box-sizing: border-box !important;
+      }
+      .gveil .gsheet, .gveil .item-card.gearcard {
+        margin: auto !important;
+        max-width: min(92vw, 380px) !important;
+        width: min(92vw, 380px) !important;
+        max-height: 88dvh !important;
+        z-index: 100000 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+        background: #15110d !important;
+        border-radius: 14px !important;
+        box-shadow: inset 0 0 0 1px rgba(242, 177, 61, 0.3), 0 12px 36px rgba(0, 0, 0, 0.8) !important;
+        padding: 10px 14px 14px !important;
+        overflow-y: auto !important;
+      }
+
+      /* 8. Hunt CTA Button */
       .big-btn.hunt {
         gap: 14px !important;
         font-family: inherit !important;
       }
     </style>
-    <script type="module" crossorigin src="./assets/index-DC3UKVmW.js?v=5"></script>
+    <script type="module" crossorigin src="./assets/index-DC3UKVmW.js?v=6"></script>
     <script>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./sw.js?v=5').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=6').then(reg => {
           reg.update();
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;
