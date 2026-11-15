@@ -8,11 +8,50 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="manifest" href="./app.webmanifest" />
     <meta name="theme-color" content="#0c0b0a" />
-    <title>던전 헌터</title>
-    <script type="module" crossorigin src="./assets/index-DC3UKVmW.js"></script>
+    <title>Loot Hunters (던전 헌터)</title>
+    <link rel="stylesheet" href="./assets/main-DN5bDZvF.css?v=3" />
+    <style>
+      #phone-frame, #phone-frame:before, #phone-frame:after {
+        display: none !important;
+      }
+      :root {
+        --ratio: 0.58 !important;
+        --apph: 100dvh !important;
+        --appw: min(100vw, calc(100dvh * 0.58)) !important;
+        --appx: calc(50vw - var(--appw) / 2) !important;
+        --appy: 0px !important;
+      }
+      #ui-root, #game-root {
+        top: 0 !important;
+        height: 100dvh !important;
+        border-radius: 0 !important;
+      }
+      .camp-rail {
+        display: flex !important;
+        flex-direction: column !important;
+      }
+      .camp-rail.left {
+        left: 8px !important;
+      }
+      .camp-rail.right {
+        right: 8px !important;
+      }
+      .bottom-nav {
+        flex-wrap: nowrap !important;
+      }
+      .bottom-nav .nav-it {
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+      }
+      .big-btn.hunt {
+        gap: 14px !important;
+      }
+    </style>
+    <script type="module" crossorigin src="./assets/index-DC3UKVmW.js?v=3"></script>
     <script>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./sw.js').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=3').then(reg => {
+          reg.update();
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;
             newWorker.addEventListener('statechange', () => {
@@ -27,6 +66,6 @@
   <body>
     <div id="game-root"></div>
     <div id="ui-root"></div>
-        <div id="boot-veil" style="position:fixed;inset:0;background:#0c0b0a;z-index:300"></div>
+    <div id="boot-veil" style="position:fixed;inset:0;background:#0c0b0a;z-index:300"></div>
   </body>
 </html>
