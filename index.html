@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="theme-color" content="#0c0b0a" />
+    <title>Loot Hunters v3.67 (PC Standalone)</title>
+    <link rel="stylesheet" href="./assets/main-CyABg-z7.css" />
+    <style>
+      /* 1. 모바일 프레임 모형 숨김 및 배경 최적화 */
+      #phone-frame, #phone-frame:before, #phone-frame:after {
+        display: none !important;
+      }
+
+      /* 2. PC 및 모바일 화면에 맞춘 9:16 중앙 포트레이트 뷰 */
+      :root {
+        --ratio: 0.5625 !important;
+        --apph: 100dvh !important;
+        --appw: min(100vw, 540px, calc(100dvh * 0.5625)) !important;
+        --appx: calc(50vw - var(--appw) / 2) !important;
+        --appy: 0px !important;
+        --safe-top: 12px !important;
+      }
+
+      body {
+        background: #060505 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        user-select: none !important;
+      }
+
+      /* 3. 게임 캔버스 및 UI 중앙 정렬 */
+      #ui-root, #game-root {
+        top: 0 !important;
+        left: var(--appx) !important;
+        width: var(--appw) !important;
+        height: 100dvh !important;
+        border-radius: 0 !important;
+        overflow: hidden !important;
+      }
+      .overlay, .clearbanner, .floorstrip, .dwalk {
+        top: 0 !important;
+        left: var(--appx) !important;
+        width: var(--appw) !important;
+        height: 100dvh !important;
+        border-radius: 0 !important;
+      }
+
+      /* 4. 캠프 레일 버튼 세로 정렬 */
+      .camp-rail {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+        background: #00000080 !important;
+        border-radius: 12px !important;
+        padding: 6px !important;
+      }
+      .camp-rail.left {
+        left: 8px !important;
+        right: auto !important;
+      }
+      .camp-rail.right {
+        right: 8px !important;
+        left: auto !important;
+      }
+
+      /* 5. 하단 네비게이션 바 한 줄 정렬 */
+      .bottom-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: flex-end !important;
+        justify-content: space-around !important;
+        gap: 2px !important;
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom)) !important;
+        max-width: var(--appw) !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .bottom-nav .nav-it {
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        padding: 0 !important;
+        white-space: nowrap !important;
+      }
+
+      /* 6. 모달 팝업 및 패널 9:16 영역 내부 제한 */
+      .gveil {
+        left: var(--appx) !important;
+        width: var(--appw) !important;
+        right: auto !important;
+        box-sizing: border-box !important;
+      }
+      .gsheet, .item-card.gearcard {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .screen, .screen.gear, .screen.forge, .screen.shop, .screen.char, .screen.camp {
+        max-width: var(--appw) !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      /* 7. 사냥 버튼 여백 */
+      .big-btn.hunt {
+        gap: 14px !important;
+        font-family: inherit !important;
+      }
+    </style>
+
+    <!-- AppLovinMAX 무광고 즉시 보상 모킹 스크립트 -->
+    <script>
+      (function() {
+        console.log('[LootHunters 3.67] Initializing Ad-Free Instant Reward Mock...');
+        window.AppLovinMAX = {
+          isInitialized: function() { return true; },
+          initialize: function(key, cb) { if (cb) cb({ hasUserConsent: true }); },
+          isRewardedAdReady: function() { return true; },
+          showRewardedAd: function(adUnitId, placement) {
+            console.log('[AdBypass] Rewarded Ad Requested (' + placement + '). Granting reward instantly!');
+            window.dispatchEvent(new CustomEvent('OnRewardedAdReceivedRewardEvent', {
+              detail: { adUnitId: adUnitId, placement: placement }
+            }));
+            window.dispatchEvent(new CustomEvent('OnRewardedAdHiddenEvent', {
+              detail: { adUnitId: adUnitId }
+            }));
+          },
+          isInterstitialReady: function() { return false; },
+          showInterstitial: function() {},
+          showBanner: function() {},
+          hideBanner: function() {}
+        };
+      })();
+    </script>
+
+    <script type="module" crossorigin src="./assets/index-BXElg3NN.js"></script>
+  </head>
+  <body>
+    <div id="game-root"></div>
+    <div id="ui-root"></div>
+    <div id="phone-frame"></div>
+    <div id="boot-veil" style="position:fixed;inset:0;background:#0c0b0a;z-index:300"></div>
+  </body>
+</html>
