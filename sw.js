@@ -1,7 +1,7 @@
 const CACHE = 'loot-hunters-v2';
 self.addEventListener('install', e => {
   self.skipWaiting();
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(['/loot-hunters/','/loot-hunters/index.html'])));
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(['./','./index.html'])));
 });
 self.addEventListener('activate', e => {
   e.waitUntil(
