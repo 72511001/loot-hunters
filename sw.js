@@ -1,4 +1,4 @@
-﻿const CACHE_NAME = 'loot-hunters-v367';
+﻿const CACHE_NAME = 'loot-hunters-v367-step5x';
 
 self.addEventListener('install', event => {
   self.skipWaiting();
