@@ -1,0 +1,23 @@
+{
+  "name": "Loot Hunters (5x Speed)",
+  "short_name": "LootHunters",
+  "start_url": "./",
+  "display": "fullscreen",
+  "background_color": "#0c0b0a",
+  "theme_color": "#0c0b0a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
