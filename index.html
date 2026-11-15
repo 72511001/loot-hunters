@@ -9,48 +9,88 @@
     <link rel="manifest" href="./app.webmanifest" />
     <meta name="theme-color" content="#0c0b0a" />
     <title>Loot Hunters (던전 헌터)</title>
-    <link rel="stylesheet" href="./assets/main-DN5bDZvF.css?v=3" />
+    <link rel="stylesheet" href="./assets/main-DN5bDZvF.css?v=4" />
     <style>
+      /* 1. Force remove phone simulator mockup on all devices */
       #phone-frame, #phone-frame:before, #phone-frame:after {
         display: none !important;
       }
+
+      /* 2. Standard 9:16 portrait layout across all screens (PC & Mobile) */
       :root {
-        --ratio: 0.58 !important;
+        --ratio: 0.5625 !important;
         --apph: 100dvh !important;
-        --appw: min(100vw, calc(100dvh * 0.58)) !important;
+        --appw: min(100vw, 540px, calc(100dvh * 0.5625)) !important;
         --appx: calc(50vw - var(--appw) / 2) !important;
         --appy: 0px !important;
+        --safe-top: 12px !important;
+      }
+
+      /* 3. Center game canvas and UI overlay without margins or borders */
+      body {
+        background: #060505 !important;
       }
       #ui-root, #game-root {
         top: 0 !important;
+        left: var(--appx) !important;
+        width: var(--appw) !important;
+        height: 100dvh !important;
+        border-radius: 0 !important;
+        overflow: hidden !important;
+      }
+      .overlay, .clearbanner, .floorstrip, .dwalk {
+        top: 0 !important;
+        left: var(--appx) !important;
+        width: var(--appw) !important;
         height: 100dvh !important;
         border-radius: 0 !important;
       }
+
+      /* 4. Camp screen rails: vertical columns at left and right edges */
       .camp-rail {
         display: flex !important;
         flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+        background: #00000080 !important;
+        border-radius: 12px !important;
+        padding: 6px !important;
       }
       .camp-rail.left {
         left: 8px !important;
+        right: auto !important;
       }
       .camp-rail.right {
         right: 8px !important;
+        left: auto !important;
       }
+
+      /* 5. Bottom navigation: strictly ONE line, no 2-row wrapping */
       .bottom-nav {
+        display: flex !important;
+        flex-direction: row !important;
         flex-wrap: nowrap !important;
+        align-items: flex-end !important;
+        justify-content: space-around !important;
+        gap: 2px !important;
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom)) !important;
       }
       .bottom-nav .nav-it {
         flex: 1 1 0 !important;
         min-width: 0 !important;
+        padding: 0 !important;
       }
+
+      /* 6. Hunt CTA Button */
       .big-btn.hunt {
         gap: 14px !important;
+        font-family: inherit !important;
       }
     </style>
-    <script type="module" crossorigin src="./assets/index-DC3UKVmW.js?v=3"></script>
+    <script type="module" crossorigin src="./assets/index-DC3UKVmW.js?v=4"></script>
     <script>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./sw.js?v=3').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=4').then(reg => {
           reg.update();
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;
