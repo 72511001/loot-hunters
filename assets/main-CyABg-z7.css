@@ -258,61 +258,67 @@
 }
 
 
-/* Unified 3px Golden Hairline Scrollbars (matching .k-list) */
-.screen.kennel::-webkit-scrollbar,
-.k-merge::-webkit-scrollbar,
-.k-merge-grid::-webkit-scrollbar,
-.k-dex-scroll::-webkit-scrollbar,
-.k-sheet-dlg::-webkit-scrollbar {
-  width: 3px !important;
-  height: 0 !important;
-}
-.screen.kennel::-webkit-scrollbar-track,
-.k-merge::-webkit-scrollbar-track,
-.k-merge-grid::-webkit-scrollbar-track,
-.k-dex-scroll::-webkit-scrollbar-track,
-.k-sheet-dlg::-webkit-scrollbar-track {
-  background: #ffffff08 !important;
-}
-.screen.kennel::-webkit-scrollbar-thumb,
-.k-merge::-webkit-scrollbar-thumb,
-.k-merge-grid::-webkit-scrollbar-thumb,
-.k-dex-scroll::-webkit-scrollbar-thumb,
-.k-sheet-dlg::-webkit-scrollbar-thumb {
-  background: #f2b13d55 !important;
-  border-radius: 3px !important;
-}
-.screen.kennel,
-.k-merge,
-.k-merge-grid,
-.k-dex-scroll,
-.k-sheet-dlg {
-  scrollbar-width: thin !important;
-  scrollbar-color: #f2b13d55 transparent !important;
-}
 
-/* Hide horizontal scrollbar completely in filter bar */
-.k-dex-filter-bar::-webkit-scrollbar {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
+/* Unified 3px Golden Hairline Scrollbars & Modal Overhauls */
+.screen.kennel {
+  overflow: hidden !important;
+}
+.k-merge {
+  overflow-y: auto !important;
+  max-height: calc(100dvh - 110px) !important;
+  padding-bottom: 50px !important;
+  flex: 1 1 auto !important;
+}
+.k-merge-grid {
+  overflow-y: auto !important;
+  max-height: 280px !important;
+  min-height: 140px !important;
+  overscroll-behavior: contain;
+  padding-bottom: 16px !important;
+}
+.k-dex-overlay {
+  position: fixed !important;
+  top: var(--appy, 0) !important;
+  bottom: auto !important;
+  left: var(--appx, 0) !important;
+  width: var(--appw, 100%) !important;
+  height: var(--apph, 100%) !important;
+  border-radius: 26px !important;
+  background: rgba(0, 0, 0, 0.85) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 1000 !important;
+  padding: 8px !important;
+  box-sizing: border-box !important;
+  backdrop-filter: blur(5px) !important;
+  overflow: hidden !important;
+}
+.k-dex-box {
+  background: #181512 !important;
+  border: 1px solid #5a4832 !important;
+  border-radius: 12px !important;
+  width: min(94%, 380px) !important;
+  max-height: 82% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.85), 0 0 15px rgba(242,177,61,0.18) !important;
+  overflow: hidden !important;
+  color: #e6dfd5 !important;
+  box-sizing: border-box !important;
 }
 .k-dex-filter-bar {
-  display: flex !important;
-  gap: 3px !important;
-  padding: 6px 6px !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 4px !important;
+  padding: 6px 8px !important;
   background: #1c1713 !important;
   border-bottom: 1px solid #2d2319 !important;
-  justify-content: space-between !important;
   overflow: hidden !important;
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
 }
 .k-dex-filter-btn {
-  flex: 1 1 auto !important;
-  min-width: 0 !important;
-  padding: 4px 1px !important;
-  font-size: 10px !important;
+  padding: 5px 2px !important;
+  font-size: 11px !important;
   text-align: center !important;
   border-radius: 5px !important;
   border: 1px solid #4a3b2b !important;
@@ -326,4 +332,66 @@
   color: #14100c !important;
   border-color: #f2b13d !important;
   font-weight: bold !important;
+}
+.k-dex-scroll {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 8px 10px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+/* 3px golden scrollbar for WebKit */
+.k-list::-webkit-scrollbar,
+.k-merge::-webkit-scrollbar,
+.k-merge-grid::-webkit-scrollbar,
+.k-dex-scroll::-webkit-scrollbar,
+.k-sheet-dlg::-webkit-scrollbar {
+  width: 3px !important;
+  height: 0 !important;
+}
+.k-list::-webkit-scrollbar-track,
+.k-merge::-webkit-scrollbar-track,
+.k-merge-grid::-webkit-scrollbar-track,
+.k-dex-scroll::-webkit-scrollbar-track,
+.k-sheet-dlg::-webkit-scrollbar-track {
+  background: #ffffff08 !important;
+}
+.k-list::-webkit-scrollbar-thumb,
+.k-merge::-webkit-scrollbar-thumb,
+.k-merge-grid::-webkit-scrollbar-thumb,
+.k-dex-scroll::-webkit-scrollbar-thumb,
+.k-sheet-dlg::-webkit-scrollbar-thumb {
+  background: #f2b13d55 !important;
+  border-radius: 3px !important;
+}
+.k-list::-webkit-scrollbar-thumb:hover,
+.k-merge::-webkit-scrollbar-thumb:hover,
+.k-merge-grid::-webkit-scrollbar-thumb:hover,
+.k-dex-scroll::-webkit-scrollbar-thumb:hover,
+.k-sheet-dlg::-webkit-scrollbar-thumb:hover {
+  background: #f2b13d99 !important;
+}
+
+/* Transcendence rung highlight */
+.k-rung.r-transcend {
+  --r: #ffd700;
+  background: linear-gradient(90deg, rgba(255,215,0,0.18), rgba(255,165,0,0.06)) !important;
+  border: 1px solid rgba(255, 215, 0, 0.35) !important;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.15) !important;
+}
+.k-rung.r-transcend .mark {
+  color: #ffd700 !important;
+  text-shadow: 0 0 8px #ffd700 !important;
+}
+.k-rung.r-transcend .k {
+  color: #ffe066 !important;
+  font-weight: bold !important;
+}
+.k-rung.r-transcend .v {
+  color: #fff4cc !important;
+  font-weight: 500 !important;
 }
