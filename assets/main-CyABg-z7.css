@@ -395,3 +395,31 @@
   color: #fff4cc !important;
   font-weight: 500 !important;
 }
+
+/* Item detail modal & general sheet 3px golden scrollbars */
+.gsheet::-webkit-scrollbar,
+.item-card::-webkit-scrollbar,
+.gearcard::-webkit-scrollbar,
+.gveil::-webkit-scrollbar {
+  width: 3px !important;
+  height: 0 !important;
+}
+.gsheet::-webkit-scrollbar-track,
+.item-card::-webkit-scrollbar-track,
+.gearcard::-webkit-scrollbar-track,
+.gveil::-webkit-scrollbar-track {
+  background: #ffffff08 !important;
+}
+.gsheet::-webkit-scrollbar-thumb,
+.item-card::-webkit-scrollbar-thumb,
+.gearcard::-webkit-scrollbar-thumb,
+.gveil::-webkit-scrollbar-thumb {
+  background: #f2b13d55 !important;
+  border-radius: 3px !important;
+}
+.gsheet::-webkit-scrollbar-thumb:hover,
+.item-card::-webkit-scrollbar-thumb:hover,
+.gearcard::-webkit-scrollbar-thumb:hover,
+.gveil::-webkit-scrollbar-thumb:hover {
+  background: #f2b13d99 !important;
+}
