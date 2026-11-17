@@ -438,3 +438,8 @@
 .tile-tag.ac-light{color:#5fd3c4}
 .tile-tag b{font-weight:bold;margin-right:1px}
 .sitem .tile-tag{display:none}
+
+/* Equipment Dialog Slim Golden Scrollbar */
+.equipment-dialog::-webkit-scrollbar{width:4px}
+.equipment-dialog::-webkit-scrollbar-track{background:rgba(0,0,0,0.2)}
+.equipment-dialog::-webkit-scrollbar-thumb{background:#d9c15e;border-radius:2px}
