@@ -432,3 +432,9 @@
 /* Bag Grid Floor Badge */
 .bag-flr{position:absolute;top:2px;right:17px;font-size:calc(var(--fs-micro) * .82);font-weight:bold;color:#ffd700;text-shadow:0 1px 2px #000,0 0 3px #000;line-height:1;pointer-events:none;white-space:nowrap;letter-spacing:-0.5px;z-index:2}
 .drop-slot .gear-flr{bottom:1px;left:3px}
+
+/* Tile Tag for Set and Armor Class */
+.tile-tag{position:absolute;top:2px;left:4px;font-size:calc(var(--fs-micro) * .8);line-height:1;font-weight:bold;color:#f0ead6;text-shadow:0 1px 2px #000,0 0 3px #000;pointer-events:none;z-index:2;white-space:nowrap;letter-spacing:-0.5px}
+.tile-tag.ac-light{color:#5fd3c4}
+.tile-tag b{font-weight:bold;margin-right:1px}
+.sitem .tile-tag{display:none}
